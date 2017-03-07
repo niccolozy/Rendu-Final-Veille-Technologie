@@ -1,19 +1,17 @@
-# Synthèse du cours Nouvelles Technologies de l'Information et de la Communication
+#  Le succès d'AlphaGo contre l'humain via Deep Learning
 
-##  Comment le deep learning a permis le succès d'AlphaGo contre l'humain
+## Introduction
 
-### Introduction
+## Le Go, un jeu ancient et complex
 
-### Le Go, un jeu ancient et complex
+## Comment construire un algorithme de joueur ?
 
-### Comment construire un algorithme de joueur ?
+## Problème critique pour le Go
 
-### Problème critique pour le Go
+## Approche avant AlphaGo
 
-### Approche avant AlphaGo
+## Amélioration par introduction de Deep Learning
 
-### Amélioration par introduction de Deep Learning
+## Quelques records
 
-### Quelques records
-
-### Conclusion
+## Conclusion
