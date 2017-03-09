@@ -8,7 +8,7 @@ Pourtant AlphaGo est arrivé. Créé par l'équipe DeepMind de Google, cette int
 ## Le Go, un jeu ancient et complex
 ### Qu'est-ce que c'est ?
 Le Go est un jeu de plateau originaire de Chine avec plus de deux milles ans d'histoire. 
-![Image du jeu de Go](/images/Go.png)
+![Image du jeu de Go](images/Go.png)
 
 En terme de règle :
 >  Il oppose deux adversaires qui placent à tour de rôle des pierres, respectivement noires et blanches, sur les intersections d'un tablier quadrillé. Le but est de contrôler le plan de jeu en y construisant des « territoires ». Les pierres encerclées deviennent des « prisonniers », le gagnant étant le joueur ayant totalisé le plus de territoires et de prisonniers. - Wikipédia
