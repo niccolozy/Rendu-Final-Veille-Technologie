@@ -42,8 +42,8 @@ Le Go est un jeu à information parfaite. C'est-à-dire que toute information n�
 ### Arbre de jeu
 Comment ce calcul peut être réaliser ? L'idée est que si on prend l'état initial du jeu comme un noeud de racine et tous les états valables dans le tour prochain comme ses noeuds d'enfant et ainsi de suite, on peut construire un arbre qui contient tous les possibilités du jeu depuis le début jusqu'à la fin. 
 
-<div style="text-align:center" markdown="1">
-![image arbre tic-tac-toe](images/arbre_tic_tac_toe.jpg "Arbre de jeu - Tic-tac-toe")
+<div style="text-align:center" markdown="1"  width="100%">
+<img src="images/arbre_tic_tac_toe.jpg" alt="image arbre tic-tac-toe" title="Arbre de jeu - Tic-tac-toe" width="100%">
 </div>
 
 Un chemin depuis le noeud de racine à un noeud de feuille est alors un jeu complet. Donc, étant donné un état actuel de jeu, le calcul du programme peut être le parcours du sous-arbre partant de ce noeud actuel pour trouver un noeud d'enfant qui permet le plus de cas gagnants. Des algorithmes comme Min-Max sont en effet des réalisations concrètes de cette idée-là.
@@ -53,7 +53,7 @@ Cependant, cette approche est problématique voire même irréalisable pour le G
 ## Problème critique pour le Go
 
 <div style="text-align:center" markdown="1">
-![image arbre go](images/arbre_go.png "Arbre de jeu - Go")
+<img src="images/arbre_go.png" alt="image arbre go" title="Arbre de jeu - Go" width="100%">
 </div>
 
 ## Approche avant AlphaGo
