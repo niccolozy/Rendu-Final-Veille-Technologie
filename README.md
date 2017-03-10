@@ -27,7 +27,7 @@ Bien que les règles du Go soient très simples, il est encore un jeu de très h
 
 Pour le Go, le plateau est de taille 19x19, au total 361 positions, et chaque position peut être dans l'un des trois états : vide, noir ou blanc. Donc sa complexité sera 
 
-$$3^361 ~= 10^170$$
+$$3^361$$
 
 Pour comparer, voici les complexités de quelques jeu connus dans le monde : 
  * Tic-tac-toe -  \( 10^3 \)
