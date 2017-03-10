@@ -25,15 +25,15 @@ Comparé avec l'échec, les règle du Go sont beaucoup plus simples. Pourtant le
 ### La complexité du jeu
 Bien que les règles du Go soient très simples, il est encore un jeu de très haute complexité. La mesure de la complexité d'un jeu peut être réalisée par l'estimation de la taille de son espace d'état. Espace d'état est l'ensemble d'états de jeu légaux et atteignables à partir de l'état initial du jeu. 
 
-Pour le Go, le plateau est de taille 19x19, au total 361 positions, et chaque position peut être dans l'un des trois états : vide, noir ou blanc. Donc sa complexité sera 
-
-$$3^361$$
+Pour le Go, le plateau est de taille 19x19, au total 361 positions, et chaque position peut être dans l'un des trois états : vide, noir ou blanc. Donc sa complexité sera 3^361.
 
 Pour comparer, voici les complexités de quelques jeu connus dans le monde : 
- * Tic-tac-toe -  \( 10^3 \)
- * Echec - \( 10^47 \)
- * Echec chinois - \( 10^40 \)
- * Go - \( 10^170 \)
+ * Tic-tac-toe -  10^3
+ * Echec - 10^47
+ * Echec chinois - 10^40
+ * Go - 10^170
+ 
+Remarquez que l'estimation actuelle sur le nombre d'atom dans univers est de l'ordre de 10^82. Donc le Go a littéralement plus de numbre d'état que le nombre d'atom dans univers. C'est donc cet espace gigantesque qui donne au Go sa complexité énorme.
 
 
 ## Comment construire un algorithme de joueur ?
@@ -42,7 +42,9 @@ Le Go est un jeu à information parfaite. C'est-à-dire que toute information n�
 ### Arbre de jeu
 Comment ce calcul peut être réaliser ? L'idée est que si on prend l'état initial du jeu comme un noeud de racine et tous les états valables dans le tour prochain comme ses noeuds d'enfant et ainsi de suite, on peut construire un arbre qui contient tous les possibilités du jeu depuis le début jusqu'à la fin. 
 
-[image arbre tic-tac-toe]
+<div style="text-align:center" markdown="1">
+![image arbre tic-tac-toe](images/arbre_tic_tac_toe.jpg "Arbre de jeu - Tic-tac-toe")
+</div>
 
 Un chemin depuis le noeud de racine à un noeud de feuille est alors un jeu complet. Donc, étant donné un état actuel de jeu, le calcul du programme peut être le parcours du sous-arbre partant de ce noeud actuel pour trouver un noeud d'enfant qui permet le plus de cas gagnants. Des algorithmes comme Min-Max sont en effet des réalisations concrètes de cette idée-là.
 
@@ -50,7 +52,9 @@ Cependant, cette approche est problématique voire même irréalisable pour le G
 
 ## Problème critique pour le Go
 
-[image arbre Go]
+<div style="text-align:center" markdown="1">
+![image arbre go](images/arbre_go.png "Arbre de jeu - Go")
+</div>
 
 ## Approche avant AlphaGo
 
