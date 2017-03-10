@@ -50,11 +50,23 @@ Un chemin depuis le noeud de racine à un noeud de feuille est alors un jeu comp
 
 Cependant, cette approche est problématique voire même irréalisable pour le Go. 
 
-## Problème critique pour le Go
+### Problème critique pour le Go
+
+Comme on a présenté précédemment, le Go a une complexité énorme, ce qui conduit à un arbre de jeu aussi gigantesque dont chaque noeud a en moyenne 200 noeuds d'enfant.   
 
 <div style="text-align:center" markdown="1">
 <img src="images/arbre_go.png" alt="image arbre go" title="Arbre de jeu - Go" width="100%">
 </div>
+
+Donc bien que le parcours de l'arbre soit la solution génerale pour un tel programme de joueur, il n'est technique pas réalisable de faire le parcours total de cet arbre comme ce qu'on fait dans l'algorithme minimax. 
+
+C'est aussi le cas pour d'autres jeux comme l'échec, qui a aussi un espace d'état trops large à parcourir. Pourtant, l'humain a pu écrire une fonction heuristique pour évaluer le plateau d'échec à un état donné. En utilisant une telle fonction, on peut estimer le meilleur mouvement qui a la plus forte chance à gagner sans besoin de faire trops de parcours de l'espace. C'est la méthode implémentée dans le Deep Blue, superordinateur qui a battu le champion du monde d'échecs en 1996.
+
+Malheureusement, cette approche ne marchera pas pour le Go parce que les spécialistes n'arrivent toujours pas à trouver une telle fonction avec performance acceptable.
+
+Donc pour développer une intelligence artificielle qui peut jouer au Go, il faut résoudre quelques problèmes critiques : 
+    1. 
+    2. 
 
 ## Approche avant AlphaGo
 
