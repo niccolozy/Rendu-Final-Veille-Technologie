@@ -26,13 +26,14 @@ Comparé avec l'échec, les règle du Go sont beaucoup plus simples. Pourtant le
 Bien que les règles du Go soient très simples, il est encore un jeu de très haute complexité. La mesure de la complexité d'un jeu peut être réalisée par l'estimation de la taille de son espace d'état. Espace d'état est l'ensemble d'états de jeu légaux et atteignables à partir de l'état initial du jeu. 
 
 Pour le Go, le plateau est de taille 19x19, au total 361 positions, et chaque position peut être dans l'un des trois états : vide, noir ou blanc. Donc sa complexité sera 
-$$3^19 ~= 10^170$$
+
+$$3^361 ~= 10^170$$
 
 Pour comparer, voici les complexités de quelques jeu connus dans le monde : 
- * Tic-tac-toe - 10^3
- * Echec - 10^47
- * Echec chinois - 10^40
- * Go - 10^170
+ * Tic-tac-toe -  \( 10^3 \)
+ * Echec - \( 10^47 \)
+ * Echec chinois - \( 10^40 \)
+ * Go - \( 10^170 \)
 
 
 ## Comment construire un algorithme de joueur ?
