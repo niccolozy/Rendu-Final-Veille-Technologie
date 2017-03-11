@@ -101,9 +101,8 @@ Les données d'apprentissage sont les paires de état-positionnement (s,p) retir
 
 En remplaçant la prise de choix aléatoire au début des simulations de recherche Monte-Carlo par la sortie de ce réseau, on calcule les scores de chaque choix de la manière : 
 ```
-Score = Score_initial + résultat
-Score_initial = proba_du_réseau / (numbre_de_foi_être_choisi + 1)
-Résultat = numbre de simulation gagnée
+Score = Score_initial + proba_de_gagne_simulation
+Score_initial = proba_policy_network / (numbre_de_foi_être_choisi + 1)
 ```
 Donc au début on choisit selon la distribution de probabilité donnée par le policy network. Au fur à musure des simulation, le choix sera basé plus sur les résultats de simulation que la sortie du réseau. Donc on gagne beaucoup d'éfficacité en ne plus faire des choix aléatoires équiprobales. On a en effet augmenté l'éfficacité de la recherche en largeur de l'arbre. 
 
@@ -115,8 +114,21 @@ Si on considère que le policy network comme une réduction de recherche en larg
 
 Simuler un jeu jusqu'à la fin pour savoir qui gagne et qui pert est toujours une opération très lourde à faire. Donc on se demande si on peut trouver une façon de prédire si on va gagner le jeu étant donné l'état associé. Si c'est possible, on n'a plus besoin d'aller jusqu'au dernier tour du jeu dans les simulations, ce qui économisera encore plus de temps. C'est le but d'avoir le value network. 
 
-Ce réseau est entraîné via regression avec cette fois les données sous forme de paire état-résultat (s,r)
+Ce réseau est entraîné via regression avec cette fois les données sous forme de paire état-résultat du jeu (s,r) pour qu'en donnant un état du jeu, la sortie est une valeur réel interprétée comme la probabilité de gagner. Donc quand on atteint un certain niveau de profondeur, le programme applique directement le value network pour avoir le résultat. Et les scores seront mis à jour de la manière : 
+```
+Score = Score_initial + 0.5*proba_de_gagne_simulation + 0.5*évaluation
+Score_initial = proba_policy_network / (numbre_de_foi_être_choisi + 1)
+```
+Pour un noeud de feille, évaluation est la sortie du value network et pour un noeud parent, elle est la moyenne des évaluations de ses noeud d'enfant directs. Les facteurs 0.5 sont les valeurs optimisées d'après l'équipe DeepMind.
 
-## Quelques records
+### Auto-évolution du réseau
+
+L'idée du value network est intéressante mais son entraînement nécessite beaucoup plus de données que DeepMind a pu retirer depuis KGS. Si on ne trouve pas une méthode qui nous donne beaucoup plus de données du jeu, ce réseau ne sera jamais existé. Heureusement, comme la version sans value network d'AlphaGo est déjà capable de jouer, on peut créer par soi-même des données en mettant deux copies d'AlphaGo comme adversaires. En plus, les jeux entre deux programmes se passent très vite et ils n'ont pas besoin de se reposer. L'équipe a pu générer environs 30 millions de jeux par cette méthode et la version entraînée avec ces données a 80% taux de gagner entre la version sans cet entraînement.
 
 ## Conclusion
+
+La recherche arborescente Monte-Carlo combinant deux réseaux de neurones plus des données d'apprentissage massives, c'est le principal mécanisme derrière AlphaGo. Mais ce ne sera pas que cela. AlphaGo est encore en train d'évoluer même depuis son succès contre Lee Sedol, le joueur professionnel coréen, en mars 2016.
+
+Au début janvier 2017, DeepMind a lancé anonymement une version avancée d'AlphaGo développée pendant l'année 2016 sur sur les plateformes Tygem et FoxGo pour jouer contre les internautes. Ses succès a pu intéresser rapidement les meilleurs joueurs du monde à participer. Au moment où DeepMind a relevé la vraie identité de ce compte joué par AlphaGo, il a déjà eu 60 jeux gagnés de manière successive.
+
+Donc si on pense que pendant son compétition contre Lee Sedol, le seul jeu perdu montre que AlphaGo était au même niveau que l'humain, maintenant il a peut-être déjà largement dépassé.
