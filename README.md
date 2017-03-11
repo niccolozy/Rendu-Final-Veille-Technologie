@@ -80,14 +80,37 @@ Soit on est maintenant à état de départ s0 du jeu qui est en effet un plateau
 Donc si initialement les choix ont tous un score de 1, maintenant on doit mettre à jour les scores à partir du résultat de simulation de la manière que 
 
 ```
-Score' = Score + résultat    (ex. résultat = 1 si gagné, 0 sinon) 
+Score = Score_initial + résultat
+Score_initial = 1 pour tous
+Résultat = numbre de simulation gagnée
 ```
 Puis on commence une nouvelle simulation, mais à la suite on choisit parmis les choix selon leurs scores. Donc dès le deuxième tour, les choix qui ont permis à gagner auront plus de chance d'être choisis. Donc en continuant à faire des simulations de jeu, les scores des choix prometteurs augmenteront et ils auront plus de chance d'être évalués dans les simulations. A la fin, le programme va choisir celui dont le score est le plus élevé pour son vrai tour.
 
-Grâce à cet algorithme, le programme CrazyStone était le plus puissance à l'époque parmi tous les logiciel de joueur de Go. 
-
+La performance de cet algorithme est montré assez satisfaisante. Grâce à lui, le programme CrazyStone était le plus puissance à l'époque parmi tous les logiciel de joueur de Go. Mais il est toujours loin du niveau humain parce que la performance est limitée par sa faible éfficacité : un grand nombre de simulations sont inutiles à cause des décisions purement aléatoire. On revient au deuxième problème posé précédemment.
 
 ## Amélioration par introduction de Deep Learning
+La solution que l'équipe DeepMind propose dans AlphaGo est d'introduire deux réseaux de neurones à convolution qui permettra une recherche plus éfficace de l'arbre dans la méthode Monte-Carlo.
+
+### Policy Network
+<div style="text-align:center" markdown="1"  width="100%">
+<img src="images/policy_network.png" alt="image policy network" title="Policy network" width="100%">
+</div>
+Le policy network est un réseau à convolution de 13 layers vise à imiter le comportement humain face à un état du jeu. Il prend en entrée état s0 du jeu et en sortie une estimation de la distribution de probabilité des positionnements pi avec un classifieur softmax.
+
+Les données d'apprentissage sont les paires de état-positionnement (s,p) retirées depuis le site [KGS](https://www.gokgs.com/), une plateforme de match en ligne de Go. Donc on entraîne le réseau tel qu'il prédit les positionnements de pière les plus probables pour un joueur humain face à l'état du plateau. Pendant le test, ce réseau arrive à un taux de succès de prédiction de 55.7%.
+
+En remplaçant la prise de choix aléatoire au début des simulations de recherche Monte-Carlo par la sortie de ce réseau, on calcule les scores de chaque choix de la manière : 
+```
+Score = Score_initial + résultat
+Score_initial = proba_du_réseau / (numbre_de_foi_être_choisi + 1)
+Résultat = numbre de simulation gagnée
+```
+Donc au début on choisit selon la distribution de probabilité donnée par le policy network. Au fur à musure des simulation, le choix sera basé plus sur les résultats de simulation que la sortie du réseau. Donc on gagne beaucoup d'éfficacité en ne plus faire des choix aléatoires équiprobales. On a en effet augmenté l'éfficacité de la recherche en largeur de l'arbre. 
+
+### Value Network
+<div style="text-align:center" markdown="1"  width="100%">
+<img src="images/value_network.png" alt="image value network" title="Value network" width="100%">
+</div>
 
 ## Quelques records
 
