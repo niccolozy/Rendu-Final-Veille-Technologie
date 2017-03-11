@@ -132,3 +132,11 @@ La recherche arborescente Monte-Carlo combinant deux réseaux de neurones plus d
 Au début janvier 2017, DeepMind a lancé anonymement une version avancée d'AlphaGo développée pendant l'année 2016 sur sur les plateformes Tygem et FoxGo pour jouer contre les internautes. Ses succès a pu intéresser rapidement les meilleurs joueurs du monde à participer. Au moment où DeepMind a relevé la vraie identité de ce compte joué par AlphaGo, il a déjà eu 60 jeux gagnés de manière successive.
 
 Donc si on pense que pendant son compétition contre Lee Sedol, le seul jeu perdu montre que AlphaGo était au même niveau que l'humain, maintenant il a peut-être déjà largement dépassé.
+
+## Bibliographie
+
+1. [Wikipedia - AlphaGo](https://en.wikipedia.org/wiki/AlphaGo)
+2. [Masteringthe Game of Go with Deep Neural Networks and Tree Search](https://gogameguru.com/i/2016/03/deepmind-mastering-go.pdf)
+3. [Move Evaluation in Go Using Deep Convolutional Neural Networks](https://arxiv.org/abs/1412.6564)
+4. [Discussion sur Reddit](https://www.reddit.com/r/MachineLearning/comments/4a7lc4/alphago_vs_deep_blue/?st=j05jdcg6&sh=61793145)
+5. [[Computing Space VIII] Games Cartographers Play: Alphago, Neural Networks and Tobler’s First Law](https://blogs.loc.gov/maps/category/game-theory/)
