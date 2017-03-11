@@ -111,6 +111,11 @@ Donc au début on choisit selon la distribution de probabilité donnée par le p
 <div style="text-align:center" markdown="1"  width="100%">
 <img src="images/value_network.png" alt="image value network" title="Value network" width="100%">
 </div>
+Si on considère que le policy network comme une réduction de recherche en largeur, le value network sert alors à une réduction de recherche en profondeur.
+
+Simuler un jeu jusqu'à la fin pour savoir qui gagne et qui pert est toujours une opération très lourde à faire. Donc on se demande si on peut trouver une façon de prédire si on va gagner le jeu étant donné l'état associé. Si c'est possible, on n'a plus besoin d'aller jusqu'au dernier tour du jeu dans les simulations, ce qui économisera encore plus de temps. C'est le but d'avoir le value network. 
+
+Ce réseau est entraîné via regression avec cette fois les données sous forme de paire état-résultat (s,r)
 
 ## Quelques records
 
