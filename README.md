@@ -51,7 +51,6 @@ Un chemin depuis le noeud de racine à un noeud de feuille est alors un jeu comp
 Cependant, cette approche est problématique voire même irréalisable pour le Go. 
 
 ### Problème critique pour le Go
-
 Comme on a présenté précédemment, le Go a une complexité énorme, ce qui conduit à un arbre de jeu aussi gigantesque dont chaque noeud a en moyenne 200 noeuds d'enfant.   
 
 <div style="text-align:center" markdown="1">
@@ -62,13 +61,31 @@ Donc bien que le parcours de l'arbre soit la solution génerale pour un tel prog
 
 C'est aussi le cas pour d'autres jeux comme l'échec, qui a aussi un espace d'état trops large à parcourir. Pourtant, l'humain a pu écrire une fonction heuristique pour évaluer le plateau d'échec à un état donné. En utilisant une telle fonction, on peut estimer le meilleur mouvement qui a la plus forte chance à gagner sans besoin de faire trops de parcours de l'espace. C'est la méthode implémentée dans le Deep Blue, superordinateur qui a battu le champion du monde d'échecs en 1996.
 
-Malheureusement, cette approche ne marchera pas pour le Go parce que les spécialistes n'arrivent toujours pas à trouver une telle fonction avec performance acceptable.
+Malheureusement, cette approche ne marchera pas pour le Go parce que les spécialistes n'arrivent toujours pas à trouver une telle fonction avec performance acceptable. Il faut nécessairement retourne vers une recherche partielle de l'arbre de jeu.
 
-Donc pour développer une intelligence artificielle qui peut jouer au Go, il faut résoudre quelques problèmes critiques : 
-    1. 
-    2. 
+Donc pour développer une intelligence artificielle qui peut jouer au Go, dans le cas où la recherche totale de l'arbre n'est pas faisable, il faut résoudre quelques problèmes critiques : 
 
-## Approche avant AlphaGo
+    1. Comment évaluer la probabilité de gagner à chaque position ?
+    2. Comment réduire la recherche ?
+
+## Approche avant AlphaGo - Recherche arborescente Monte-Carlo
+La recherche arborescente Monte-Carlo est un algorithme heuristique qui répond au premier problème. Il va estimer la probabilité de gagner d'un état du jeu de manière purement probabiliste. En plus, il ne nécessite quasiment pas de connaissance sur le jeu.
+
+<div style="text-align:center" markdown="1"  width="100%">
+<img src="images/monte-carlo.png" alt="image recherche arborescente Monte-Carlo" title="Recherche arborescente Monte-Carlo" width="100%">
+</div>
+
+Soit on est maintenant à état de départ s0 du jeu qui est en effet un plateau vide. A priori on a 361 choix possibles pour l'état suivant s1. Le programme commence la simulation en supposant que tous les choix sont équiprobable en terme de gagner. Donc il va choisir aléatoirement un positionnement de pière p0 pour transformer l'état à s1 parmi les 361. Puis dans son simulation, il suppose que son adversaire prend des décisions de la même manière que lui, donc encore un choix aléatoire équiprobable p1 pour aller à s2, ainsi de suite. A la fin, si le programme gagne, ça veut dire que les décisions (si,pi) pendant cette simulation marchent bien et alors on doit les donner une évaluation meilleure que les autres.
+
+Donc si initialement les choix ont tous un score de 1, maintenant on doit mettre à jour les scores à partir du résultat de simulation de la manière que 
+
+```
+Score' = Score + résultat    (ex. résultat = 1 si gagné, 0 sinon) 
+```
+Puis on commence une nouvelle simulation, mais à la suite on choisit parmis les choix selon leurs scores. Donc dès le deuxième tour, les choix qui ont permis à gagner auront plus de chance d'être choisis. Donc en continuant à faire des simulations de jeu, les scores des choix prometteurs augmenteront et ils auront plus de chance d'être évalués dans les simulations. A la fin, le programme va choisir celui dont le score est le plus élevé pour son vrai tour.
+
+Grâce à cet algorithme, le programme CrazyStone était le plus puissance à l'époque parmi tous les logiciel de joueur de Go. 
+
 
 ## Amélioration par introduction de Deep Learning
 
