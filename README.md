@@ -93,7 +93,7 @@ La solution que l'équipe DeepMind propose dans AlphaGo est d'introduire deux r�
 
 ### Policy Network
 <div style="text-align:center" markdown="1"  width="100%">
-<img src="images/policy_network.png" alt="image policy network" title="Policy network" width="100%">
+<img src="images/policy_network.png" alt="image policy network" title="Policy network" length="100%">
 </div>
 Le policy network est un réseau à convolution de 13 layers vise à imiter le comportement humain face à un état du jeu. Il prend en entrée état s0 du jeu et en sortie une estimation de la distribution de probabilité des positionnements pi avec un classifieur softmax.
 
@@ -108,7 +108,7 @@ Donc au début on choisit selon la distribution de probabilité donnée par le p
 
 ### Value Network
 <div style="text-align:center" markdown="1"  width="100%">
-<img src="images/value_network.png" alt="image value network" title="Value network" width="100%">
+<img src="images/value_network.png" alt="image value network" title="Value network" length="100%">
 </div>
 Si on considère que le policy network comme une réduction de recherche en largeur, le value network sert alors à une réduction de recherche en profondeur.
 
