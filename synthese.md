@@ -3,7 +3,7 @@
 </script>
 
 #  Le succès d'AlphaGo contre l'humain via Deep Learning
-<br />
+Yang ZHANG
 ## Introduction
 Le Go est un jeu de plateau ancient pour deux joueurs et depuis longtemps il est considéré comme le jeu le plus complex inventé par l'humain. Même après avoir vu le victoire de Deep Bleu contre le champion du monde dans l'échec, on ne pense toujours pas qu'un programme peut être capable de battre l'humain dans le Go.
 
